@@ -22,11 +22,16 @@
                     </li>
 
                     <li class="">
-                        <a href="aktifitas"><strong><i class="fa fa-briefcase"></i></strong> <span>Aktifitas User</span></a>
+                        <a href="biaya"><strong><i class="fa fa-money"></i></strong> <span>Biaya Les</span></a>
                     </li>
 
                     <li class="">
-                        <a href="validasi"><strong><i class="fa fa-file"></i></strong> <span>Validasi Dokumen</span></a>
+                        <!-- <a href="validasi"><strong><i class="fa fa-file"></i></strong> <span>Validasi Dokumen</span></a> -->
+                        <a href="valakun"><strong><i class="fa fa-file"></i></strong> <span>Validasi Akun</span> <span class="badge">2</span></a>
+                    </li>
+
+                    <li class="">
+                        <a href="aktifitas"><strong><i class="fa fa-briefcase"></i></strong> <span>Aktifitas User</span></a>
                     </li>
                     
                     <li class="">

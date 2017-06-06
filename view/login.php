@@ -2,6 +2,7 @@
   if (!isset($_SESSION['token_login'])) {
     $_SESSION['token_login'] = base64_encode(openssl_random_pseudo_bytes(32));
   }
+  $profil = $_GET['profil'];
 ?>
 <script type="text/javascript" src="assets/js/jquery.js"></script>
 <!-- messagebox -->
@@ -16,10 +17,10 @@
         <form method="post" action="">
           <div class="form-group">
             <input id="token_log" name="token_log" type="hidden" value="<?php echo $_SESSION['token_login']; ?> " >
-            <input type="text" class="form-control" name="uname" placeholder="Username">
+            <input type="text" class="form-control" autocomplete="off" name="uname" placeholder="Username">
           </div><!-- /.form-group -->
           <div class="form-group">
-            <input type="password" class="form-control" name="pass" placeholder="Password">
+            <input type="password" class="form-control" autocomplete="off" name="pass" placeholder="Password">
           </div><!-- /.form-group -->
           <button type="submit" class="btn" name="masuk">Masuk</button>
           <a href="daftar" style="float: right;">Belum Punya Akun?</a>
@@ -63,41 +64,83 @@
                     $_SESSION['level']   = base64_encode($rw['level']);
                     $_SESSION['id_user'] = base64_encode($rw['id_user']);
                     if ($rw['level']=="siswa") {
-                      echo "<script>
-                                    Lobibox.notify('default', {
-                                        continueDelayOnInactiveTab: true,
-                                        showClass: 'fadeInDown',
-                                        hideClass: 'fadeUpDown',
-                                        size: 'mini',
-                                        position: 'center top',
-                                        msg: 'Proses Verifikasi.......'
-                                    });
-                            </script><meta http-equiv='refresh' content='3;url=siswa' />
-                            ";
+                      if (!empty($profil)) {
+                        echo "<script>
+                                      Lobibox.notify('default', {
+                                          continueDelayOnInactiveTab: true,
+                                          showClass: 'fadeInDown',
+                                          hideClass: 'fadeUpDown',
+                                          size: 'mini',
+                                          position: 'center top',
+                                          msg: 'Berhasil, Silakan Tunggu.......'
+                                      });
+                              </script><meta http-equiv='refresh' content='3;url=profil&kode&".$profil."' />
+                              ";
+                      }else{
+                        echo "<script>
+                                      Lobibox.notify('default', {
+                                          continueDelayOnInactiveTab: true,
+                                          showClass: 'fadeInDown',
+                                          hideClass: 'fadeUpDown',
+                                          size: 'mini',
+                                          position: 'center top',
+                                          msg: 'Berhasil, Silakan Tunggu.......'
+                                      });
+                              </script><meta http-equiv='refresh' content='3;url=siswa' />
+                              ";
+                      }
                     }elseif ($rw['level']=="tentor_luar") {
-                      echo "<script>
-                                    Lobibox.notify('default', {
-                                        continueDelayOnInactiveTab: true,
-                                        showClass: 'fadeInDown',
-                                        hideClass: 'fadeUpDown',
-                                        size: 'mini',
-                                        position: 'center top',
-                                        msg: 'Proses Verifikasi.......'
-                                    });
-                            </script><meta http-equiv='refresh' content='3;url=tluar' />
-                            ";
+                      if (!empty($profil)) {
+                        echo "<script>
+                                      Lobibox.notify('default', {
+                                          continueDelayOnInactiveTab: true,
+                                          showClass: 'fadeInDown',
+                                          hideClass: 'fadeUpDown',
+                                          size: 'mini',
+                                          position: 'center top',
+                                          msg: 'Berhasil, Silakan Tunggu.......'
+                                      });
+                              </script><meta http-equiv='refresh' content='3;url=profil&kode&".$profil."' />
+                              ";
+                      }else{
+                        echo "<script>
+                                      Lobibox.notify('default', {
+                                          continueDelayOnInactiveTab: true,
+                                          showClass: 'fadeInDown',
+                                          hideClass: 'fadeUpDown',
+                                          size: 'mini',
+                                          position: 'center top',
+                                          msg: 'Berhasil, Silakan Tunggu.......'
+                                      });
+                              </script><meta http-equiv='refresh' content='3;url=tluar' />
+                              ";
+                      }
                     }elseif ($rw['level']=="tentor_lbb") {
-                      echo "<script>
-                                    Lobibox.notify('default', {
-                                        continueDelayOnInactiveTab: true,
-                                        showClass: 'fadeInDown',
-                                        hideClass: 'fadeUpDown',
-                                        size: 'mini',
-                                        position: 'center top',
-                                        msg: 'Proses Verifikasi.......'
-                                    });
-                            </script><meta http-equiv='refresh' content='3;url=tentor' />
-                            ";
+                      if (!empty($profil)) {
+                        echo "<script>
+                                      Lobibox.notify('default', {
+                                          continueDelayOnInactiveTab: true,
+                                          showClass: 'fadeInDown',
+                                          hideClass: 'fadeUpDown',
+                                          size: 'mini',
+                                          position: 'center top',
+                                          msg: 'Berhasil, Silakan Tunggu.......'
+                                      });
+                              </script><meta http-equiv='refresh' content='3;url=profil&kode&".$profil."' />
+                              ";
+                      }else{
+                        echo "<script>
+                                      Lobibox.notify('default', {
+                                          continueDelayOnInactiveTab: true,
+                                          showClass: 'fadeInDown',
+                                          hideClass: 'fadeUpDown',
+                                          size: 'mini',
+                                          position: 'center top',
+                                          msg: 'Berhasil, Silakan Tunggu.......'
+                                      });
+                              </script><meta http-equiv='refresh' content='3;url=tentor' />
+                              ";
+                      }
                     }
                   }else{
                     ?>

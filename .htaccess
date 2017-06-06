@@ -4,12 +4,15 @@ RewriteRule ^(.*)\.htm$ $1.php [NC]
 ErrorDocument 404 http://localhost/tentor/index.php?tentor=redirect
 RewriteRule ^404 index.php?tentor=404
 
+RewriteRule ^login&profil&(.*) index.php?tentor=login&profil=$1
 RewriteRule ^login index.php?tentor=login
 RewriteRule ^daftar index.php?tentor=daftar
 RewriteRule ^verifikasi&kode&(.*)&u&(.*) index.php?tentor=verifikasi&kode=$1&u=$2
 
 RewriteRule ^siswa index.php?tentor=siswa
 RewriteRule ^profil&kode&(.*) index.php?tentor=profil&kode=$1
+RewriteRule ^pilih index.php?tentor=pilih
+RewriteRule ^pesan&kode&(.*) index.php?tentor=pesan&kode=$1
 RewriteRule ^keluar index.php?tentor=keluar
 
 RewriteRule ^tluar index.php?tentor=tluar
@@ -18,10 +21,16 @@ RewriteRule ^editpp&kode&(.*) index.php?tentor=editpp&kode=$1
 RewriteRule ^riwayat index.php?tentor=riwayat
 
 RewriteRule ^tentor index.php?tentor=tentor
+RewriteRule ^pemberitahuan&kode&(.*) index.php?tentor=pemberitahuan&kode=$1
+RewriteRule ^pemberitahuan index.php?tentor=pemberitahuan
 
 RewriteRule ^admin index.php?tentor=admin
 RewriteRule ^cekadmin index.php?tentor=cekadmin
+RewriteRule ^showbiaya index.php?tentor=showbiaya
 RewriteRule ^pengguna index.php?tentor=pengguna
 RewriteRule ^editprofil&kode&(.*) index.php?tentor=editprofil&kode=$1
 RewriteRule ^tambah index.php?tentor=tambah
+RewriteRule ^validasi index.php?tentor=validasi
+RewriteRule ^valakun index.php?tentor=valakun
+RewriteRule ^biaya index.php?tentor=biaya
 RewriteRule ^editpengguna&kode&(.*) index.php?tentor=editpengguna&kode=$1

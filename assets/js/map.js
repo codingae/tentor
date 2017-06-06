@@ -4,7 +4,7 @@ $(document).ready(function() {
     function initialize() {
         var mapOptions = {
             center: new google.maps.LatLng(-7.546839499999997, 112.22647940000002),
-            zoom: 15
+            zoom: 19
         };
         var map = new google.maps.Map(document.getElementById('map-canvas'),
         mapOptions);
@@ -44,7 +44,7 @@ $(document).ready(function() {
                     map.fitBounds(place.geometry.viewport);
                 } else {
                     map.setCenter(place.geometry.location);
-                    map.setZoom(30); 
+                    map.setZoom(10); 
                 }
                 marker.setIcon(/** @type {google.maps.Icon} */({
                     url: place.icon,
@@ -85,7 +85,7 @@ $(document).ready(function() {
         function initMap() {
         map = new google.maps.Map(document.getElementById('map-canvas'), {
           center: {lat: -34.397, lng: 150.644},
-          zoom: 6
+          zoom: 12
         });
         infoWindow = new google.maps.InfoWindow;
 

@@ -1,3 +1,9 @@
+<?php 
+$id_tentor = base64_decode($_SESSION['id_user']);
+// echo $id_tentor;
+$query_pemberitahuan = mysqli_query($koneksi,"select count(status) as jumlah_pemberitahuan from permintaan_tentor where id_user_pencari='$id_tentor' && (status='diterima' || status='upload_valid' || status='ditolak' || status='les_selesai' || status='upload_tidak_valid')");
+$row_pemberitahuan = mysqli_fetch_array($query_pemberitahuan);
+?>
 <div class="header header-standard">
   <div class="header-topbar">
     <div class="container">
@@ -21,7 +27,7 @@
     <div class="header-inner">
       <div class="header-main">
         <div class="header-title">
-          <a href="#!">
+          <a href="./">
             <img src="assets/img/logo.png" alt="Realsite">
             <span>Aplikasi Tentor</span>
           </a>
@@ -30,7 +36,7 @@
         <div class="header-navigation">
           <div class="nav-main-wrapper">
             <div class="nav-main-title visible-xs">
-              <a href="#!">
+              <a href="./">
                 <img src="assets/img/logo-blue.png" alt="Realsite">
                 Aplikasi Tentor
               </a>
@@ -57,11 +63,30 @@
                     <a href="#">How It Work </a>
                   </li>
                   <li class="has-children ">
-                    <a href="#!">Profil <i class="fa fa-caret-down"></i></a>
+                    <a href="#!">Profil <i class="fa fa-caret-down"></i>
+                    <?php 
+                      if ($row_pemberitahuan['jumlah_pemberitahuan']>0) {
+                      ?>
+                        <span class="badge">?</span>
+                      <?php
+                      }else{
+
+                      }
+                    ?>
+                    </a>
                     <div>
                       <a href="#!">Profil <i class="fa fa-caret-down"></i></a>                    
                       <ul class="sub-menu">
                         <li><a href="profil&kode&<?= $_SESSION['id_user'] ?>">Profil</a></li>
+                        <?php 
+                          if ($row_pemberitahuan['jumlah_pemberitahuan']>0) {
+                          ?>
+                            <li><a href="pemberitahuan">Pemberitahuan <span class="badge"><?php echo $row_pemberitahuan['jumlah_pemberitahuan']; ?></span></a></li>
+                          <?php
+                          }else{
+
+                          }
+                        ?>
                         <li><a href="keluar">Keluar</a></li>
                       </ul>
                     </div>

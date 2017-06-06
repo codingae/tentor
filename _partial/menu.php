@@ -21,7 +21,7 @@
     <div class="header-inner">
       <div class="header-main">
         <div class="header-title">
-          <a href="#!">
+          <a href="./">
             <img src="assets/img/logo.png" alt="Realsite">
             <span>Aplikasi Tentor</span>
           </a>
@@ -30,7 +30,7 @@
         <div class="header-navigation">
           <div class="nav-main-wrapper">
             <div class="nav-main-title visible-xs">
-              <a href="#!">
+              <a href="./">
                 <img src="assets/img/logo-blue.png" alt="Realsite">
                 Aplikasi Tentor
               </a>
@@ -45,20 +45,6 @@
 
                   <li class="has-children ">
                     <a href="#">testimoni </a>
-                    <div>
-                      <a href="#">Agents <i class="fa fa-caret-down"></i></a>
-                    
-                      <ul class="sub-menu">
-                        <li><a class="subtitle">Agent</a></li>
-                        <li><a href="agents-detail.html">Detail</a></li>
-                        <li><a href="agents-row.html">Listing Row</a></li>
-                        <li><a href="agents-large.html">Listing Large</a></li>
-                        <li><a href="agents-medium.html">Listing Medium</a></li>
-                        <li><a class="subtitle">Agency</a></li>
-                        <li><a href="agencies-detail.html">Detail</a></li>
-                        <li><a href="agencies-row.html">Listing Row</a></li>
-                      </ul>
-                    </div>
                   </li>
                   <li class="has-children ">
                     <a href="#">How It Work </a>

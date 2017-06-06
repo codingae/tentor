@@ -27,8 +27,8 @@
             <h2 class="page-header">
             <div class="w3-row">
                 <center>
-                <a href="javascript:void(0)" onclick="tabsTentor(event, 'SD');">
-                  <div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding w3-col m3 active">SD/MI</div>
+                <a href="javascript:void(0)" onclick="tabsTentor(event, 'SD');" id="default">
+                  <div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding w3-col m3 w3">SD/MI</div>
                 </a>
                 <a href="javascript:void(0)" onclick="tabsTentor(event, 'SMP');">
                   <div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding w3-col m3">SMP/MTs</div>
@@ -535,7 +535,7 @@ if (mysqli_num_rows($cek_sarjana)>0) {
                             $upload = move_uploaded_file($asal_sd,$nmfile_sd);
                             // seleksi saat berhasil upload ke direktori
                             if ($upload == TRUE) {
-                                $querysd = mysqli_query($koneksi,"update riwayat set sd='$sd',tahun_sd='$tahun_sd',ijazahsd='$nmfile_sd' where id_user_tentor='$id_user_sess'")or die(mysqli_error($koneksi));
+                                $querysd = mysqli_query($koneksi,"update riwayat set sd='$sd',tahun_sd='$tahun_sd',ijazahsd='$nmfile_sd',verif_sd='tahap1' where id_user_tentor='$id_user_sess'")or die(mysqli_error($koneksi));
                                 if ($querysd == TRUE) {
                                     echo "<script>
                                                 Lobibox.notify('default', {
@@ -564,7 +564,7 @@ if (mysqli_num_rows($cek_sarjana)>0) {
                             $upload = move_uploaded_file($asal_sd,$nmfile_sd);
                             // seleksi saat berhasil upload ke direktori
                             if ($upload == TRUE) {
-                                $querysd = mysqli_query($koneksi,"update riwayat set sd='$sd',tahun_sd='$tahun_sd',ijazahsd='$nmfile_sd' where id_user_tentor='$id_user_sess'")or die(mysqli_error($koneksi));
+                                $querysd = mysqli_query($koneksi,"update riwayat set sd='$sd',tahun_sd='$tahun_sd',ijazahsd='$nmfile_sd',verif_sd='tahap1' where id_user_tentor='$id_user_sess'")or die(mysqli_error($koneksi));
                                 if ($querysd == TRUE) {
                                     echo "<script>
                                                 Lobibox.notify('default', {
@@ -643,7 +643,7 @@ if (mysqli_num_rows($cek_sarjana)>0) {
         $format_sd = pathinfo($nama_sd,PATHINFO_EXTENSION);   //format file
         $nmfile_sd = "assets/riwayat/".$nama_sd;                         //folder + nama image
         if ($nama_sd == "") {
-            $queryeditsd = mysqli_query($koneksi,"update riwayat set sd='$sd',tahun_sd='$tahun_sd',ijazahsd='$ijazah_sd_lama' where id_user_tentor='$id_user_sess'");
+            $queryeditsd = mysqli_query($koneksi,"update riwayat set sd='$sd',tahun_sd='$tahun_sd',ijazahsd='$ijazah_sd_lama',verif_sd='tahap1' where id_user_tentor='$id_user_sess'");
             if ($queryeditsd==TRUE) {
                 echo "<script>
                             Lobibox.notify('default', {
@@ -682,7 +682,7 @@ if (mysqli_num_rows($cek_sarjana)>0) {
                             $upload = move_uploaded_file($asal_sd,$nmfile_sd);
                             // seleksi saat berhasil upload ke direktori
                             if ($upload == TRUE) {
-                                $querysd = mysqli_query($koneksi,"update riwayat set sd='$sd',tahun_sd='$tahun_sd',ijazahsd='$nmfile_sd' where id_user_tentor='$id_user_sess'")or die(mysqli_error($koneksi));
+                                $querysd = mysqli_query($koneksi,"update riwayat set sd='$sd',tahun_sd='$tahun_sd',ijazahsd='$nmfile_sd',verif_sd='tahap1' where id_user_tentor='$id_user_sess'")or die(mysqli_error($koneksi));
                                 if ($querysd == TRUE) {
                                     echo "<script>
                                                 Lobibox.notify('default', {
@@ -711,7 +711,7 @@ if (mysqli_num_rows($cek_sarjana)>0) {
                             $upload = move_uploaded_file($asal_sd,$nmfile_sd);
                             // seleksi saat berhasil upload ke direktori
                             if ($upload == TRUE) {
-                                $querysd = mysqli_query($koneksi,"update riwayat set sd='$sd',tahun_sd='$tahun_sd',ijazahsd='$nmfile_sd' where id_user_tentor='$id_user_sess'")or die(mysqli_error($koneksi));
+                                $querysd = mysqli_query($koneksi,"update riwayat set sd='$sd',tahun_sd='$tahun_sd',ijazahsd='$nmfile_sd',verif_sd='tahap1' where id_user_tentor='$id_user_sess'")or die(mysqli_error($koneksi));
                                 if ($querysd == TRUE) {
                                     echo "<script>
                                                 Lobibox.notify('default', {
@@ -806,7 +806,7 @@ if (mysqli_num_rows($cek_sarjana)>0) {
                             $upload = move_uploaded_file($asal_smp,$nmfile_smp);
                             // seleksi saat berhasil upload ke direktori
                             if ($upload == TRUE) {
-                                $querysmp = mysqli_query($koneksi,"update riwayat set smp='$smp',tahun_smp='$tahun_smp',ijazahsmp='$nmfile_smp' where id_user_tentor='$id_user_sess'")or die(mysqli_error($koneksi));
+                                $querysmp = mysqli_query($koneksi,"update riwayat set smp='$smp',tahun_smp='$tahun_smp',ijazahsmp='$nmfile_smp',verif_smp='tahap1' where id_user_tentor='$id_user_sess'")or die(mysqli_error($koneksi));
                                 if ($querysmp == TRUE) {
                                     echo "<script>
                                                 Lobibox.notify('default', {
@@ -826,7 +826,7 @@ if (mysqli_num_rows($cek_sarjana)>0) {
                             $upload = move_uploaded_file($asal_smp,$nmfile_smp);
                             // seleksi saat berhasil upload ke direktori
                             if ($upload == TRUE) {
-                                $querysmp = mysqli_query($koneksi,"update riwayat set smp='$smp',tahun_smp='$tahun_smp',ijazahsmp='$nmfile_smp' where id_user_tentor='$id_user_sess'")or die(mysqli_error($koneksi));
+                                $querysmp = mysqli_query($koneksi,"update riwayat set smp='$smp',tahun_smp='$tahun_smp',ijazahsmp='$nmfile_smp',verif_smp='tahap1' where id_user_tentor='$id_user_sess'")or die(mysqli_error($koneksi));
                                 if ($querysmp == TRUE) {
                                     echo "<script>
                                                 Lobibox.notify('default', {
@@ -907,7 +907,7 @@ if (mysqli_num_rows($cek_sarjana)>0) {
         $format_smp = pathinfo($nama_smp,PATHINFO_EXTENSION);   //format file
         $nmfile_smp = "assets/riwayat/".$nama_smp;                         //folder + nama image
         if ($nama_smp=="") {
-            $querysmp = mysqli_query($koneksi,"update riwayat set smp='$smp',tahun_smp='$tahun_smp',ijazahsmp='$ijazah_smp_lama' where id_user_tentor='$id_user_sess'")or die(mysqli_error($koneksi));
+            $querysmp = mysqli_query($koneksi,"update riwayat set smp='$smp',tahun_smp='$tahun_smp',ijazahsmp='$ijazah_smp_lama',verif_smp='tahap1' where id_user_tentor='$id_user_sess'")or die(mysqli_error($koneksi));
             if ($querysmp == TRUE) {
                 echo "<script>
                             Lobibox.notify('default', {
@@ -934,7 +934,7 @@ if (mysqli_num_rows($cek_sarjana)>0) {
                             $upload = move_uploaded_file($asal_smp,$nmfile_smp);
                             // seleksi saat berhasil upload ke direktori
                             if ($upload == TRUE) {
-                                $querysmp = mysqli_query($koneksi,"update riwayat set smp='$smp',tahun_smp='$tahun_smp',ijazahsmp='$nmfile_smp' where id_user_tentor='$id_user_sess'")or die(mysqli_error($koneksi));
+                                $querysmp = mysqli_query($koneksi,"update riwayat set smp='$smp',tahun_smp='$tahun_smp',ijazahsmp='$nmfile_smp',verif_smp='tahap1' where id_user_tentor='$id_user_sess'")or die(mysqli_error($koneksi));
                                 if ($querysmp == TRUE) {
                                     echo "<script>
                                                 Lobibox.notify('default', {
@@ -954,7 +954,7 @@ if (mysqli_num_rows($cek_sarjana)>0) {
                             $upload = move_uploaded_file($asal_smp,$nmfile_smp);
                             // seleksi saat berhasil upload ke direktori
                             if ($upload == TRUE) {
-                                $querysmp = mysqli_query($koneksi,"update riwayat set smp='$smp',tahun_smp='$tahun_smp',ijazahsmp='$nmfile_smp' where id_user_tentor='$id_user_sess'")or die(mysqli_error($koneksi));
+                                $querysmp = mysqli_query($koneksi,"update riwayat set smp='$smp',tahun_smp='$tahun_smp',ijazahsmp='$nmfile_smp',verif_smp='tahap1' where id_user_tentor='$id_user_sess'")or die(mysqli_error($koneksi));
                                 if ($querysmp == TRUE) {
                                     echo "<script>
                                                 Lobibox.notify('default', {
@@ -1050,7 +1050,7 @@ if (mysqli_num_rows($cek_sarjana)>0) {
                             $upload = move_uploaded_file($asal_sma,$nmfile_sma);
                             // seleksi saat berhasil upload ke direktori
                             if ($upload == TRUE) {
-                                $querysma = mysqli_query($koneksi,"update riwayat set sma='$smp',tahun_sma='$tahun_sma',ijazahsma='$nmfile_sma' where id_user_tentor='$id_user_sess'")or die(mysqli_error($koneksi));
+                                $querysma = mysqli_query($koneksi,"update riwayat set sma='$sma',tahun_sma='$tahun_sma',ijazahsma='$nmfile_sma',verif_sma='tahap1' where id_user_tentor='$id_user_sess'")or die(mysqli_error($koneksi));
                                 if ($querysma == TRUE) {
                                     echo "<script>
                                                 Lobibox.notify('default', {
@@ -1070,7 +1070,7 @@ if (mysqli_num_rows($cek_sarjana)>0) {
                             $upload = move_uploaded_file($asal_sma,$nmfile_sma);
                             // seleksi saat berhasil upload ke direktori
                             if ($upload == TRUE) {
-                                $querysma = mysqli_query($koneksi,"update riwayat set sma='$smp',tahun_sma='$tahun_sma',ijazahsma='$nmfile_sma' where id_user_tentor='$id_user_sess'")or die(mysqli_error($koneksi));
+                                $querysma = mysqli_query($koneksi,"update riwayat set sma='$sma',tahun_sma='$tahun_sma',ijazahsma='$nmfile_sma',verif_sma='tahap1' where id_user_tentor='$id_user_sess'")or die(mysqli_error($koneksi));
                                 if ($querysma == TRUE) {
                                     echo "<script>
                                                 Lobibox.notify('default', {
@@ -1150,7 +1150,7 @@ if (mysqli_num_rows($cek_sarjana)>0) {
         $format_sma = pathinfo($nama_sma,PATHINFO_EXTENSION);   //format file
         $nmfile_sma = "assets/riwayat/".$nama_sma;                         //folder + nama image
         if ($nama_sma=="") {
-            $queryeditsma = mysqli_query($koneksi,"update riwayat set sma='$sma',tahun_sma='$tahun_sma',ijazahsma='$ijazah_sma_lama' where id_user_tentor='$id_user_sess'");
+            $queryeditsma = mysqli_query($koneksi,"update riwayat set sma='$sma',tahun_sma='$tahun_sma',ijazahsma='$ijazah_sma_lama',verif_sma='tahap1' where id_user_tentor='$id_user_sess'");
             if ($queryeditsma==TRUE) {
                 echo "<script>
                             Lobibox.notify('default', {
@@ -1189,7 +1189,7 @@ if (mysqli_num_rows($cek_sarjana)>0) {
                             $upload = move_uploaded_file($asal_sma,$nmfile_sma);
                             // seleksi saat berhasil upload ke direktori
                             if ($upload == TRUE) {
-                                $querysma = mysqli_query($koneksi,"update riwayat set sma='$smp',tahun_sma='$tahun_sma',ijazahsma='$nmfile_sma' where id_user_tentor='$id_user_sess'")or die(mysqli_error($koneksi));
+                                $querysma = mysqli_query($koneksi,"update riwayat set sma='$sma',tahun_sma='$tahun_sma',ijazahsma='$nmfile_sma',verif_sma='tahap1' where id_user_tentor='$id_user_sess'")or die(mysqli_error($koneksi));
                                 if ($querysma == TRUE) {
                                     echo "<script>
                                                 Lobibox.notify('default', {
@@ -1209,7 +1209,7 @@ if (mysqli_num_rows($cek_sarjana)>0) {
                             $upload = move_uploaded_file($asal_sma,$nmfile_sma);
                             // seleksi saat berhasil upload ke direktori
                             if ($upload == TRUE) {
-                                $querysma = mysqli_query($koneksi,"update riwayat set sma='$smp',tahun_sma='$tahun_sma',ijazahsma='$nmfile_sma' where id_user_tentor='$id_user_sess'")or die(mysqli_error($koneksi));
+                                $querysma = mysqli_query($koneksi,"update riwayat set sma='$sma',tahun_sma='$tahun_sma',ijazahsma='$nmfile_sma',verif_sma='tahap1' where id_user_tentor='$id_user_sess'")or die(mysqli_error($koneksi));
                                 if ($querysma == TRUE) {
                                     echo "<script>
                                                 Lobibox.notify('default', {
@@ -1305,7 +1305,7 @@ if (mysqli_num_rows($cek_sarjana)>0) {
                             $upload = move_uploaded_file($asal_sarjana,$nmfile_sarjana);
                             // seleksi saat berhasil upload ke direktori
                             if ($upload == TRUE) {
-                                $querysarjana = mysqli_query($koneksi,"update riwayat set sarjana='$sarjana',tahun_sarjana='$tahun_sarjana',transkrip='$nmfile_sarjana' where id_user_tentor='$id_user_sess'")or die(mysqli_error($koneksi));
+                                $querysarjana = mysqli_query($koneksi,"update riwayat set sarjana='$sarjana',tahun_sarjana='$tahun_sarjana',transkrip='$nmfile_sarjana',verif_sarjana='tahap1' where id_user_tentor='$id_user_sess'")or die(mysqli_error($koneksi));
                                 if ($querysarjana == TRUE) {
                                     echo "<script>
                                                 Lobibox.notify('default', {
@@ -1325,7 +1325,7 @@ if (mysqli_num_rows($cek_sarjana)>0) {
                             $upload = move_uploaded_file($asal_sarjana,$nmfile_sarjana);
                             // seleksi saat berhasil upload ke direktori
                             if ($upload == TRUE) {
-                                $querysarjana = mysqli_query($koneksi,"update riwayat set sarjana='$sarjana',tahun_sarjana='$tahun_sarjana',transkrip='$nmfile_sarjana' where id_user_tentor='$id_user_sess'")or die(mysqli_error($koneksi));
+                                $querysarjana = mysqli_query($koneksi,"update riwayat set sarjana='$sarjana',tahun_sarjana='$tahun_sarjana',transkrip='$nmfile_sarjana',verif_sarjana='tahap1' where id_user_tentor='$id_user_sess'")or die(mysqli_error($koneksi));
                                 if ($querysarjana == TRUE) {
                                     echo "<script>
                                                 Lobibox.notify('default', {
@@ -1405,7 +1405,7 @@ if (mysqli_num_rows($cek_sarjana)>0) {
         $format_sarjana = pathinfo($nama_sarjana,PATHINFO_EXTENSION);   //format file
         $nmfile_sarjana = "assets/riwayat/".$nama_sarjana;                         //folder + nama image
         if ($nama_sarjana=="") {
-            $queryeditsarjana = mysqli_query($koneksi,"update riwayat set sarjana='$sarjana',tahun_sarjana='$tahun_sarjana',transkrip='$ijazah_sarjana_lama' where id_user_tentor='$id_user_sess'");
+            $queryeditsarjana = mysqli_query($koneksi,"update riwayat set sarjana='$sarjana',tahun_sarjana='$tahun_sarjana',transkrip='$ijazah_sarjana_lama',verif_sarjana='tahap1' where id_user_tentor='$id_user_sess'");
             if ($queryeditsarjana==TRUE) {
                 echo "<script>
                             Lobibox.notify('default', {
@@ -1443,7 +1443,7 @@ if (mysqli_num_rows($cek_sarjana)>0) {
                             $upload = move_uploaded_file($asal_sarjana,$nmfile_sarjana);
                             // seleksi saat berhasil upload ke direktori
                             if ($upload == TRUE) {
-                                $querysarjana = mysqli_query($koneksi,"update riwayat set sarjana='$sarjana',tahun_sarjana='$tahun_sarjana',transkrip='$nmfile_sarjana' where id_user_tentor='$id_user_sess'")or die(mysqli_error($koneksi));
+                                $querysarjana = mysqli_query($koneksi,"update riwayat set sarjana='$sarjana',tahun_sarjana='$tahun_sarjana',transkrip='$nmfile_sarjana',verif_sarjana='tahap1' where id_user_tentor='$id_user_sess'")or die(mysqli_error($koneksi));
                                 if ($querysarjana == TRUE) {
                                     echo "<script>
                                                 Lobibox.notify('default', {
@@ -1463,7 +1463,7 @@ if (mysqli_num_rows($cek_sarjana)>0) {
                             $upload = move_uploaded_file($asal_sarjana,$nmfile_sarjana);
                             // seleksi saat berhasil upload ke direktori
                             if ($upload == TRUE) {
-                                $querysarjana = mysqli_query($koneksi,"update riwayat set sarjana='$sarjana',tahun_sarjana='$tahun_sarjana',transkrip='$nmfile_sarjana' where id_user_tentor='$id_user_sess'")or die(mysqli_error($koneksi));
+                                $querysarjana = mysqli_query($koneksi,"update riwayat set sarjana='$sarjana',tahun_sarjana='$tahun_sarjana',transkrip='$nmfile_sarjana',verif_sarjana='tahap1' where id_user_tentor='$id_user_sess'")or die(mysqli_error($koneksi));
                                 if ($querysarjana == TRUE) {
                                     echo "<script>
                                                 Lobibox.notify('default', {
@@ -1543,4 +1543,5 @@ function tabsTentor(evt, kategori) {
   document.getElementById(kategori).style.display = "block";
   evt.currentTarget.firstElementChild.className += " w3-border-red";
 }
+document.getElementById("default").click();
 </script>

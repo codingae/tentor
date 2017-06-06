@@ -53,7 +53,7 @@ $columns = array(
 // SQL server connection information
 $sql_details = array(
     'user' => 'root',
-    'pass' => 'asd',
+    'pass' => '',
     'db'   => 'db_tentor',
     'host' => 'localhost'
 );

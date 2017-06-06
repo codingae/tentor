@@ -1,4 +1,5 @@
 <?php
+error_reporting(0);
 session_start();
 include_once "../jembatan.php";
 $uname   = mysqli_real_escape_string($koneksi, $_POST['uname']);

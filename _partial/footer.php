@@ -32,4 +32,12 @@
 
 <script type="text/javascript" src="assets/js/realsite.js"></script>
 <script type="text/javascript" src="assets/js/charts.js"></script>
+<?php 
+if ($tentor == "profil" || $tentor == "pemberitahuan" ) {
+    # code...
+}else{
+?>
 <script type="text/javascript" src="assets/js/map.js"></script>
+<?php
+}
+?>

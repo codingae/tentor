@@ -16,3 +16,18 @@ create view `view_user` AS select
 `user_detail`.`lattitude` AS `lattitude`
 from (`user` join `user_detail` 
 on((`user`.`id_user` = `user_detail`.`id_user`)));
+
+/*Pilih tentor*/
+create view `view_pilih_tentor` AS select 
+`user`.`id_user` AS `id_user`,
+`user`.`level` AS `level`,
+`user`.`uname` AS `uname`,
+`user`.`status` AS `status_user`,
+`user_detail`.`alamat` AS `alamat`,
+`user_detail`.`longtitude` AS `longtitude`,
+`user_detail`.`lattitude` AS `lattitude`,
+`keahlian`.`jenjang` AS `jenjang`,
+`keahlian`.`mapel` AS `mapel`,
+`keahlian`.`status` AS `status_keahlian`
+from (`user` join `user_detail` on(`user`.`id_user` = `user_detail`.`id_user`)
+			 join `keahlian` on(`user`.`id_user` = `keahlian`.`id_user`));

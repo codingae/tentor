@@ -71,12 +71,12 @@
     <script type="text/javascript" src="assets/libraries/OwlCarousel/owl-carousel/owl.carousel.min.js"></script>
     <script type="text/javascript" src="assets/libraries/jquery.scrollTo/jquery.scrollTo.min.js"></script>
     <?php 
-        if ($tentor=="pengguna") {
-            
-        }else{
+        $tentor = (!empty($_GET['tentor'])) ? $_GET['tentor'] : "kosong";
+        if ($tentor=="pengguna" || $tentor=="tambah" || $tentor=="editprofil" ) {
             ?>
                 <script src="http://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyCL76rVshr5mzm9bOgZEtBVtIHhAsd1R6A"></script>
-            <?php
+            <?php            
+        }else{
         }
     ?>
     <script type="text/javascript" src="assets/libraries/jquery-google-map/infobox.js"></script>
@@ -166,8 +166,9 @@
         });
     });
     </script>
-    <script type="text/javascript" src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/1.10.15/js/dataTables.jqueryui.min.js"></script>    
+    <script type="text/javascript" src="assets/js/jquery.dataTables.min.js"></script>
+    <!-- <script type="text/javascript" src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>     -->
+    <!-- <script type="text/javascript" src="https://cdn.datatables.net/1.10.15/js/dataTables.jqueryui.min.js"></script>     -->
     <script>
         $(document).ready(function() {
             $('#ss').DataTable( {
@@ -176,6 +177,9 @@
                 "ajax": "http://localhost/tentor/view/admin/dt_pengguna.php"
             } );
         } );
+        $(document).ready(function(){
+            $('#validasiss').DataTable();
+        });
     </script>
     <script>
         function check_login()

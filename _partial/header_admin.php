@@ -7,8 +7,8 @@
 <head>
     <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
-    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Roboto:400,300,500,700&amp;subset=latin,latin-ext">
-    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Montserrat:400,700">
+    <!-- <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Roboto:400,300,500,700&amp;subset=latin,latin-ext">
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Montserrat:400,700"> -->
     <link rel="stylesheet" type="text/css" href="assets/libraries/Font-Awesome/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="assets/libraries/bootstrap-select/dist/css/bootstrap-select.min.css">
     <link rel="stylesheet" type="text/css" href="assets/libraries/bootstrap-fileinput/css/fileinput.min.css">
@@ -16,8 +16,10 @@
     <link rel="stylesheet" type="text/css" href="assets/libraries/OwlCarousel/owl-carousel/owl.carousel.css">
     <link rel="stylesheet" type="text/css" href="assets/css/realsite-admin.css">
     <link rel="stylesheet" type="text/css" href="assets/libraries/lolibox/css/lobibox.css">
-    <!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css"> -->
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/dataTables.jqueryui.min.css">    
+    <link rel="stylesheet" href="assets/libraries/datatables/media/css/jquery.dataTables.min.css">
+    <link rel="shortcut icon" type="image/png" href="assets/img/student.png"/>
+    <link rel="shortcut icon" type="image/png" href="assets/img/student.png"/>
+    <!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/dataTables.jqueryui.min.css">     -->
     <script type="text/javascript" src="assets/js/jquery.js"></script>
     <?php 
         include_once "_partial/lolibox.php";
@@ -60,7 +62,20 @@
 
                         <div class="admin-content-header-menu">
                             <ul class="admin-content-header-menu-inner collapse">
-                                <li><a href="#">Dokumentasi</a></li>
+                                <li><a href="pemberitahuan">
+                                    Pemberitahuan
+                                    <?php 
+                                        $cek_pemberitahuan = mysqli_query($koneksi,"select count(status) as jumlah1 from permintaan_tentor where status = 'upload_proses'");
+                                        $row_pemberitahuan = mysqli_fetch_array($cek_pemberitahuan);
+                                        if (mysqli_num_rows($cek_pemberitahuan)>0) {                                        
+                                    ?>
+                                    <span class="badge"><?php echo $row_pemberitahuan['jumlah1']; ?></span>
+                                        <?php 
+                                    }else{
+                                        
+                                    }
+                                         ?>
+                                    </a></li>
                                 <li><a href="editprofil&kode&<?php echo base64_decode($_SESSION['id_user']); ?>">Profil</a></li>
                                 <li><a href="keluar">Logout</a></li>
                             </ul>

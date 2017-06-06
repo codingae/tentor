@@ -21,7 +21,7 @@
     <div class="header-inner">
       <div class="header-main">
         <div class="header-title">
-          <a href="#!">
+          <a href="./">
             <img src="assets/img/logo.png" alt="Realsite">
             <span>Aplikasi Tentor</span>
           </a>
@@ -30,7 +30,7 @@
         <div class="header-navigation">
           <div class="nav-main-wrapper">
             <div class="nav-main-title visible-xs">
-              <a href="#!">
+              <a href="./">
                 <img src="assets/img/logo-blue.png" alt="Realsite">
                 Aplikasi Tentor
               </a>
@@ -44,8 +44,7 @@
                     <div>
                       <a href="#!">Fitur <i class="fa fa-caret-down"></i></a>                    
                       <ul class="sub-menu">
-                        <li><a href="pilih">Pilih Tentor</a></li>
-                        <li><a href="jadwal">Jadwal Les</a></li>
+                        <li><a href="jadwal">Jadwal Ngajar</a></li>
                         <li><a href="raport">Raport Siswa</a></li>
                       </ul>
                     </div>

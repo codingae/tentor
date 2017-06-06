@@ -109,10 +109,10 @@
 </div>
 <?php
     if (isset($_POST['submit-daftar'])) {
-        $date = date("Ymd");    
-        $level        = addslashes(mysqli_real_escape_string($koneksi,$_POST['level']));
-        $query_id     = mysqli_query($koneksi,"select id_user from user where id_user like '%$date' order by id_user desc limit 1");
-        $row_id       = mysqli_fetch_array($query_id);
+        $date     = date("Ymd");    
+        $level    = addslashes(mysqli_real_escape_string($koneksi,$_POST['level']));
+        $query_id = mysqli_query($koneksi,"select id_user from user where id_user like '%".$date."%' order by id_user desc limit 1");
+        $row_id   = mysqli_fetch_array($query_id);
         if (mysqli_num_rows($query_id)>0) {
             $id_user = $row_id['id_user']+1;
         }

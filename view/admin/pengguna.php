@@ -1,5 +1,3 @@
-
-
 <div class="admin-content-main">
     <div class="admin-content-main-inner">
         <div class="container-fluid box">

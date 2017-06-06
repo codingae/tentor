@@ -2,20 +2,19 @@
 <html>
 
 
-<!-- Mirrored from preview.byaviators.com/template/realsite/admin-login.html by HTTrack Website Copier/3.x [XR&CO'2013], Sun, 07 May 2017 11:39:07 GMT -->
-<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
 
-    <link rel="stylesheet" type="text/css" href="../../../fonts.googleapis.com/css1e8b.css?family=Roboto:400,300,500,700&amp;subset=latin,latin-ext">
-    <link rel="stylesheet" type="text/css" href="../../../fonts.googleapis.com/csse3e5.css?family=Montserrat:400,700">
-    <link rel="stylesheet" type="text/css" href="assets/libraries/Font-Awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="assets/libraries/bootstrap-select/dist/css/bootstrap-select.min.css">
-    <link rel="stylesheet" type="text/css" href="assets/libraries/bootstrap-fileinput/css/fileinput.min.css">
-    <link rel="stylesheet" type="text/css" href="assets/libraries/nvd3/nv.d3.min.css">
-    <link rel="stylesheet" type="text/css" href="assets/libraries/OwlCarousel/owl-carousel/owl.carousel.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/realsite-admin.css">
+    <link rel ="stylesheet" type="text/css" href="../../../fonts.googleapis.com/css1e8b.css?family=Roboto:400,300,500,700&amp;subset=latin,latin-ext">
+    <link rel ="stylesheet" type="text/css" href="../../../fonts.googleapis.com/csse3e5.css?family=Montserrat:400,700">
+    <link rel ="stylesheet" type="text/css" href="assets/libraries/Font-Awesome/css/font-awesome.min.css">
+    <link rel ="stylesheet" type="text/css" href="assets/libraries/bootstrap-select/dist/css/bootstrap-select.min.css">
+    <link rel ="stylesheet" type="text/css" href="assets/libraries/bootstrap-fileinput/css/fileinput.min.css">
+    <link rel ="stylesheet" type="text/css" href="assets/libraries/nvd3/nv.d3.min.css">
+    <link rel ="stylesheet" type="text/css" href="assets/libraries/OwlCarousel/owl-carousel/owl.carousel.css">
+    <link rel ="stylesheet" type="text/css" href="assets/css/realsite-admin.css">
 
     <title>login</title>
 </head>

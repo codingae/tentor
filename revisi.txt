@@ -1,0 +1,12 @@
+aksi
+- valid, tidak valid (ok)
+
+tombol pesan tentor langsung tampil (tidak dalam tabs) (ok)
+
+opsi pembayaran transfer saja (ok)
+
+informasi pemilihan jadwal min max dalam semingu
+
+batas pembayaran 1x24 jam
+
+jurnal presensi dibuat do akhir saja

@@ -9700,3 +9700,6 @@ button.btn, button.btn-secondary {
       text-decoration: underline; }
 
 /*# sourceMappingURL=realsite.css.map */
+input[type="radio"] { -webkit-appearance: radio; }
+input[type="submit"], input[type="button"] { -webkit-appearance: button; }
+select { -webkit-appearance:textfield; }

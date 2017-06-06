@@ -14,6 +14,8 @@
 </style>
 <div class="container">
     <div class="row">
+        <!-- sidebar -->
+        <?php include_once "_partial/sidebar.php"; ?>
         <div class="content col-sm-8 col-md-9">
             <form action="" method="post" enctype="multipart/form-data" id="validasi">
             <span class="page-header">
@@ -73,7 +75,7 @@
                     </div><!-- /.form-group -->                    
                 </div>
                 <div class="col-sm-12 col-md-12">
-                    <input id="pac-input" class="controls" type="text" name="alamat" placeholder="Masukkan Alamat Anda Disini" required>
+                    <input id="pac-input" class="controls" type="text" name="alamat" placeholder="Masukkan Alamat (Desa Kecamatan....) Ex:(Kedawong Diwek ...)" required>
                     <!-- <input class="controls" type="button" name="alamat" value="geolocation" onclick="getLocation()"> -->
                         <div id="map-canvas"></div>
                         <div class="row">
@@ -102,153 +104,6 @@
             </div><!-- /.center -->
             </form>
         </div><!-- /.content -->
-        <div class="sidebar col-sm-4 col-md-3">
-            <div class="widget">
-                <div class="widget-title">
-                    <h2>Top Tentor</h2>
-                </div><!--/.widget-title -->
-
-                <div class="widget-content">
-                    <div class="agent-small">
-                        <div class="agent-small-inner">
-                            <div class="agent-small-image">
-                                <a href="#" class="agent-small-image-inner">
-                                    <img src="assets/img/tmp/agents/female.jpg" alt="">
-                                </a><!-- /.agent-small-image-inner -->
-                            </div><!-- /.agent-small-image -->
-
-                            <div class="agent-small-content">
-                                <h3 class="agent-small-title">
-                                    <a href="#">Caelan Sinclair</a>
-                                </h3>
-
-                                <div class="agent-small-email">
-                                    <i class="fa fa-at"></i> <a href="#">E-mail Address</a>
-                                </div><!-- /.agent-small-email -->
-
-                                <div class="agent-small-phone">
-                                    <i class="fa fa-phone"></i> 1401-123-456
-                                </div><!-- /.agent-small-phone -->
-                            </div><!-- /.agent-small-content -->
-                        </div><!-- /.agent-small-inner -->
-                    </div><!-- /.agent-small -->
-
-                    <div class="agent-small">
-                        <div class="agent-small-inner">
-                            <div class="agent-small-image">
-                                <a href="#" class="agent-small-image-inner">
-                                    <img src="assets/img/tmp/agents/male.jpg" alt="">
-                                </a><!-- /.agent-small-image-inner -->
-                            </div><!-- /.agent-small-image -->
-
-                            <div class="agent-small-content">
-                                <h3 class="agent-small-title">
-                                    <a href="#">Lee Izzy</a>
-                                </h3>
-
-                                <div class="agent-small-email">
-                                    <i class="fa fa-at"></i> <a href="#">E-mail Address</a>
-                                </div><!-- /.agent-small-email -->
-
-                                <div class="agent-small-phone">
-                                    <i class="fa fa-phone"></i> 1401-456-789
-                                </div><!-- /.agent-small-phone -->
-                            </div><!-- /.agent-small-content -->
-                        </div><!-- /.agent-small-inner -->
-                    </div><!-- /.agent-small -->
-
-
-                    <div class="agent-small">
-                        <div class="agent-small-inner">
-                            <div class="agent-small-image">
-                                <a href="#" class="agent-small-image-inner">
-                                    <img src="assets/img/tmp/agents/male.jpg" alt="">
-                                </a><!-- /.agent-small-image-inner -->
-                            </div><!-- /.agent-small-image -->
-
-                            <div class="agent-small-content">
-                                <h3 class="agent-small-title">
-                                    <a href="#">Derick Brice</a>
-                                </h3>
-
-                                <div class="agent-small-email">
-                                    <i class="fa fa-at"></i> <a href="#">E-mail Address</a>
-                                </div><!-- /.agent-small-email -->
-
-                                <div class="agent-small-phone">
-                                    <i class="fa fa-phone"></i> 1401-789-123
-                                </div><!-- /.agent-small-phone -->
-                            </div><!-- /.agent-small-content -->
-                        </div><!-- /.agent-small-inner -->
-                    </div><!-- /.agent-small -->
-                </div><!-- /.widget-content -->
-            </div><!-- /.widget -->
-
-            <div class="widget">
-                <div class="widget-title">
-                    <h2>Cari Tentor</h2>
-                </div><!-- /.widget-title -->
-
-                <div class="widget-content">
-                    <form method="post" action="#!">
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Keyword">
-                        </div><!-- /.form-group -->
-
-                        <div class="form-group">
-                            <select name="property">
-                                <option>Property Type</option>
-                                <option>Apartment</option>
-                                <option>Condo</option>
-                                <option>House</option>
-                                <option>Villa</option>
-                            </select>
-                        </div><!-- /.form-group -->
-
-                        <div class="form-group">
-                            <select name="contract">
-                                <option>Contract</option>
-                                <option>Rent</option>
-                                <option>Sale</option>
-                            </select>
-                        </div><!-- /.form-group -->
-
-                        <div class="form-group">
-                            <select name="location">
-                                <option>Location</option>
-                                <option>Kensal</option>
-                                <option>Braymer</option>
-                                <option>Horton Bay</option>
-                                <option>Laurel Run</option>
-                                <option>Estherville</option>
-                                <option>Millhousen</option>
-                                <option>Allegan</option>
-                                <option>Florala</option>
-                                <option>Dundarrach</option>
-                                <option>Neligh</option>
-                                <option>Roseboro</option>
-                                <option>Mount Pleasant</option>
-                                <option>Moro</option>
-                                <option>Strathmoor Village</option>
-                                <option>Mabton</option>
-                                <option>Loup City</option>
-                                <option>Wolverine</option>
-                                <option>San Leandro</option>
-                                <option>Dunwoody</option>
-                                <option>Battle Ground</option>
-                                <option>Hanson</option>
-                                <option>Reedley</option>
-                                <option>Bayshore</option>
-                                <option>Tupelo</option>
-                                <option>Lone Pine</option>
-                            </select>
-                        </div><!-- /.form-group -->
-
-                        <button class="btn btn-lg btn-block">Search</button>
-                    </form>
-                </div><!-- /.widget-content -->
-            </div><!-- /.widget -->
-        </div><!-- /.sidebar -->
     </div><!-- /.row -->
 </div><!-- /.container -->
 <script src="http://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyCL76rVshr5mzm9bOgZEtBVtIHhAsd1R6A"></script>
@@ -311,7 +166,7 @@ $(document).ready(function(){
     if (isset($_POST['submit-daftar'])) {
         $date = date("Ymd");    
         $level        = addslashes(mysqli_real_escape_string($koneksi,$_POST['level']));
-        $query_id     = mysqli_query($koneksi,"select id_user from user where id_user like '%$date' order by id_user desc limit 1");
+        $query_id     = mysqli_query($koneksi,"select id_user from user where level='$level' && id_user like '%".$date."%' order by id_user desc limit 1");
         $row_id       = mysqli_fetch_array($query_id);
         if (mysqli_num_rows($query_id)>0) {
             $id_user = $row_id['id_user']+1;

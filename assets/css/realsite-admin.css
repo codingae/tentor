@@ -7605,3 +7605,44 @@ a {
         display: none; }
 
 /*# sourceMappingURL=realsite-admin.css.map */
+.notes {
+  margin-bottom: -30px; }
+
+.note {
+  background-color: #EF5350;
+  height: 0px;
+  margin-bottom: 30px;
+  padding-bottom: 100%;
+  position: relative; }
+  .note strong, .note span {
+    color: #fff;
+    display: block; }
+  .note strong {
+    color: #fff;
+    font-size: 60px;
+    line-height: 1;
+    margin-bottom: 30px; }
+  .note span {
+    font-size: 14px;
+    font-weight: 500; }
+  .note.red-light {
+    background-color: #FFEBEE; }
+    .note.red-light strong, .note.red-light span {
+      color: #F44336; }
+  .note.blue {
+    background-color: #2196F3; }
+  .note.blue-light {
+    background-color: #E3F2FD; }
+    .note.blue-light strong, .note.blue-light span {
+      color: #2196F3; }
+  .note.white {
+    background-color: #fff; }
+    .note.white strong, .note.white span {
+      color: #616161; }
+
+.note-inner {
+  left: 20px;
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%); }
