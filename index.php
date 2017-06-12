@@ -108,6 +108,7 @@ if($tentor == "admin" || $level_sess=="admin"){
             case 'edituser': include "view/tentor_luar/edituser.php"; break;
             case 'editpp': include "view/tentor_luar/editpp.php"; break;
             case 'riwayat': include "view/tentor_luar/riwayat.php"; break;
+            case 'jadwal': include "view/tentor_luar/jadwal.php"; break;
             case 'pemberitahuan': include "view/tentor_luar/pemberitahuan.php"; break;
             case 'keluar': include "view/keluar.php"; break;
             case '404': include "view/404.php"; break;
@@ -121,6 +122,7 @@ if($tentor == "admin" || $level_sess=="admin"){
             case 'profil': include "view/siswa/profil.php"; break;
             case 'edituser': include "view/tentor_luar/edituser.php"; break;
             case 'editpp': include "view/tentor_luar/editpp.php"; break;
+            case 'jadwal': include "view/tentor_luar/jadwal.php"; break;
             case 'pemberitahuan': include "view/tentor_luar/pemberitahuan.php"; break;
             case 'keluar': include "view/keluar.php"; break;
             case '404': include "view/404.php"; break;
@@ -130,6 +132,7 @@ if($tentor == "admin" || $level_sess=="admin"){
         }elseif ($level_sess=='siswa') {
             switch ($tentor) {
             case 'keluar': include "view/keluar.php"; break;
+            case 'jadwal': include "view/siswa/jadwal.php"; break;
             case 'siswa': include "view/siswa/home.php"; break;
             case 'profil': include "view/siswa/profil.php"; break;
             case 'pesan': include "view/siswa/pesan.php"; break;
@@ -138,6 +141,7 @@ if($tentor == "admin" || $level_sess=="admin"){
             case 'pilih': include "view/siswa/pilih.php"; break;
             case 'editpp': include "view/tentor_luar/editpp.php"; break;
             case 'edituser': include "view/tentor_luar/edituser.php"; break;
+            case 'raport': include "view/siswa/raport.php"; break;
             case 'redirect': include "view/redirect.php"; break;
             case '404': include "view/404.php"; break;
             case 'redirect': include "view/redirect.php"; break;

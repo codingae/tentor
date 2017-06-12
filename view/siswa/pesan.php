@@ -255,7 +255,7 @@
             $id_detail = $id_permintaan.$kode_tentor;
 
             // query untuk table
-            $query_permintaan = mysqli_query($koneksi,"insert into permintaan_tentor values ('$id_permintaan','$kode_pemesan','$kode_tentor','$id_biaya','$id_keahlian','$id_detail','$paket','','proses')")or die(mysqli_error($koneksi));
+            $query_permintaan = mysqli_query($koneksi,"insert into permintaan_tentor values ('$id_permintaan','$kode_pemesan','$kode_tentor','$id_biaya','$id_keahlian','$id_detail','$paket','','proses','','')")or die(mysqli_error($koneksi));
 
             if (isset($sabtu)) {
                 $sabtu = $sabtu;
@@ -311,7 +311,7 @@
                 $query_permintaan = mysqli_query($koneksi,"update jadwal_tentor set jumat='proses' where id_jam='$jam' && id_user_tentor='$kode_tentor'")or die(mysqli_error($koneksi));                
             }
 
-            $query_permintaan = mysqli_query($koneksi,"insert into evaluasi_siswa values('','','','','$id_permintaan')")or die(mysqli_error($koneksi));
+            // $query_permintaan = mysqli_query($koneksi,"insert into evaluasi_siswa values('','','','','$id_permintaan')")or die(mysqli_error($koneksi));
 
             if ($query_permintaan==TRUE) {
                 echo "<script>

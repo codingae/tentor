@@ -56,12 +56,12 @@ $row_pemberitahuan = mysqli_fetch_array($query_pemberitahuan);
                       </ul>
                     </div>
                   </li>
-                  <li class="has-children">
+                  <!-- <li class="has-children">
                     <a href="#">testimoni </a>
                   </li>
                   <li class="has-children ">
                     <a href="#">How It Work </a>
-                  </li>
+                  </li> -->
                   <li class="has-children ">
                     <a href="#!">Profil <i class="fa fa-caret-down"></i>
                     <?php 

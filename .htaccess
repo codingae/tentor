@@ -14,6 +14,7 @@ RewriteRule ^profil&kode&(.*) index.php?tentor=profil&kode=$1
 RewriteRule ^pilih index.php?tentor=pilih
 RewriteRule ^pesan&kode&(.*) index.php?tentor=pesan&kode=$1
 RewriteRule ^keluar index.php?tentor=keluar
+RewriteRule ^raport index.php?tentor=raport
 
 RewriteRule ^tluar index.php?tentor=tluar
 RewriteRule ^edituser&kode&(.*) index.php?tentor=edituser&kode=$1
@@ -21,6 +22,8 @@ RewriteRule ^editpp&kode&(.*) index.php?tentor=editpp&kode=$1
 RewriteRule ^riwayat index.php?tentor=riwayat
 
 RewriteRule ^tentor index.php?tentor=tentor
+RewriteRule ^jadwal&kode&(.*) index.php?tentor=jadwal&kode=$1
+RewriteRule ^jadwal index.php?tentor=jadwal
 RewriteRule ^pemberitahuan&kode&(.*) index.php?tentor=pemberitahuan&kode=$1
 RewriteRule ^pemberitahuan index.php?tentor=pemberitahuan
 

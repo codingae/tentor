@@ -43,12 +43,12 @@
                     <a href="layanan">Layanan </a>
                   </li>
 
-                  <li class="has-children ">
+                  <!-- <li class="has-children ">
                     <a href="#">testimoni </a>
                   </li>
                   <li class="has-children ">
                     <a href="#">How It Work </a>
-                  </li>
+                  </li> -->
                   <li class="important">
                     <a href="login">Masuk</a>
                   </li>

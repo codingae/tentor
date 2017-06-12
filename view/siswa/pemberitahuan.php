@@ -63,6 +63,8 @@
                             permintaan_tentor.id_permintaan,
                             permintaan_tentor.id_biaya,
                             permintaan_tentor.upload_bukti_bayar,
+                            permintaan_tentor.mulai_les,
+                            permintaan_tentor.selesai_les,
                             user_detail.nama_lengkap,
                             biaya.biaya
                             from permintaan_tentor INNER JOIN user_detail 
@@ -70,7 +72,7 @@
                                  INNER JOIN biaya 
                                  ON permintaan_tentor.id_biaya=biaya.id
                              where permintaan_tentor.id_user_pencari='$id_user_pencari' 
-                                   && permintaan_tentor.status!='proses'");
+                                   && (permintaan_tentor.status!='proses' or permintaan_tentor.status!='upload_proses')");
                         // $query_pemberitahuan = mysqli_query($koneksi,"select * from permintaan_tentor where id_user_tentor='$id_tentor' && status='proses'");
                         if (mysqli_num_rows($query_pemberitahuan)>0) {
                         while ($row_pemberitahuan = mysqli_fetch_array($query_pemberitahuan)) {
@@ -84,7 +86,7 @@
                                 }elseif ($row_pemberitahuan['status']=="upload_tidak_valid") {
                                     echo "File Bukti Bayar Anda Kemungkinan Kurang Jelas atau Tidak Sesuai, Silakan Upload Ulang Dengan File Yang Benar";                                    
                                 }elseif ($row_pemberitahuan['status']=="upload_valid") {
-                                    echo "Tentor Akan Mulai Mengajar";                                    
+                                    echo "Tentor Akan Mulai Mengajar Pada<b> ".$row_pemberitahuan['mulai_les']." sampai ".$row_pemberitahuan['selesai_les'];                                    
                                 }
                             ?>
                         </td>
@@ -179,6 +181,8 @@
                         $query_dt = mysqli_query($koneksi,"select 
                             permintaan_tentor.id_permintaan,
                             permintaan_tentor.id_detail_permintaan_tentor,
+                            permintaan_tentor.mulai_les,
+                            permintaan_tentor.selesai_les,
                             user_detail.nama_lengkap,
                             user_detail.alamat,
                             keahlian.jenjang,
@@ -221,7 +225,7 @@
                             <br><br>
                             <div class="col-sm-12 col-md-12">
                                 <label for="">Alamat</label>
-                                <input type="text" value="<?php echo ucwords($row_dt['alamat']); ?> Bulan" class="form-control" readonly>
+                                <input type="text" value="<?php echo ucwords($row_dt['alamat']); ?>" class="form-control" readonly>
                             </div>
                             <br><br>
                             <br><br>
@@ -256,7 +260,18 @@
                             <br><br>
                             <hr>
                             <h3>Jadwal</h3>
-
+                            <div class="col-sm-12 col-md-6">
+                                <label for="">Mulai Les</label>
+                                <b><i>
+                                    <input style="color:#1E88E5" type="text" value="<?php echo date_format(date_create($row_dt['mulai_les']),'d-m-Y'); ?>" class="form-control" readonly>
+                                </i></b>
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <label for="">Selesai Les</label>
+                                <b><i>
+                                    <input style="color:#1E88E5" type="text" value="<?php echo date_format(date_create($row_dt['selesai_les']),'d-m-Y'); ?>" class="form-control" readonly>
+                                </i></b>
+                            </div>
                             <?php 
                                 $no_jadwal    = 1;
                                 $idnyadetail  = $row_dt['id_detail_permintaan_tentor'];

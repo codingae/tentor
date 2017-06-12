@@ -69,7 +69,42 @@
                                                 <div class="w3-container w3-border-top w3-padding-16 w3-light-grey">
                                                     <form action="" method="post">
                                                         <p style="text-align: center; margin:0 auto;"> 
+                                                                <?php 
+                                                                $tgl = substr($row_pemberitahuan['id_permintaan'],4,2);
+                                                                $bln = substr($row_pemberitahuan['id_permintaan'],2,2);
+                                                                $thn = substr($row_pemberitahuan['id_permintaan'],0,2);
+                                                                $date = date_create($thn."-".$bln."-".$tgl); 
+                                                                date_add($date, date_interval_create_from_date_string('7 days'));
+                                                                $date_ngajar=date_format($date, 'Ymd');
+                                                                $date_sekarang=date("Ymd");
+                                                                // echo $date_ngajar."-".$date_sekarang;
+                                                                if ($date_ngajar < $date_sekarang) {
+                                                                    $date          = date("y-m-d");
+                                                                    $date_skr      = date_create($date);
+                                                                    date_add($date_skr, date_interval_create_from_date_string('3 days'));
+                                                                    $date_mulai    = date_format($date_skr, 'Y-m-d');
+                                                                    $date_selesai  = date_create($date_mulai); 
+                                                                    date_add($date_selesai, date_interval_create_from_date_string('1 months'));
+                                                                    ?>
+                                                                    Tanggal Mulai Les: <b><?php echo date_format($date_skr, 'd-m-Y'); ?> </b><br>
+                                                                    Tanggal Selesai Les: <b><?php echo date_format($date_selesai, 'd-m-Y'); ?> </b><br><br>
+                                                                    <?php
+                                                                    $date_selesai  =date_format($date_selesai, 'Y-m-d');
+                                                                }else{
+                                                                    date_add($date, date_interval_create_from_date_string('7 days'));
+                                                                    $date_mulai=date_format($date, 'Y-m-d');
+                                                                    $date_selesai = date_create($date_mulai); 
+                                                                    date_add($date_selesai, date_interval_create_from_date_string('1 months'));
+                                                                    ?>
+                                                                    Tanggal Mulai Les: <b><?php echo date_format($date, 'd-m-Y'); ?> </b><br>
+                                                                    Tanggal Selesai Les: <b><?php echo date_format($date_selesai, 'd-m-Y'); ?> </b><br><br>
+                                                                    <?php
+                                                                    $date_selesai=date_format($date_selesai, 'Y-m-d');
+                                                                }              
+                                                                ?>
                                                                 <input type="hidden" name="id_permintaan" value="<?php echo $row_pemberitahuan['id_permintaan']; ?>">
+                                                                <input type="hidden" name="date_mulai" value="<?php echo $date_mulai; ?>">
+                                                                <input type="hidden" name="date_selesai" value="<?php echo $date_selesai; ?>">
                                                                 <button type="submit"  name="terima_bukti" class="btn btn-secondary">
                                                                 Valid</button>
                                                                 <button type="submit"  name="tolak_bukti" class="btn">
@@ -221,7 +256,9 @@
     if (isset($_POST['terima_bukti'])) {
       include_once "_partial/lolibox.php";
       $id_permintaan = $_POST['id_permintaan'];
-      $query_terima = mysqli_query($koneksi,"update permintaan_tentor set status='upload_valid' where id_permintaan='$id_permintaan'");
+      $date_mulai    = $_POST['date_mulai'];
+      $date_selesai  = $_POST['date_selesai'];
+      $query_terima  = mysqli_query($koneksi,"update permintaan_tentor set status='upload_valid',mulai_les='$date_mulai',selesai_les='$date_selesai' where id_permintaan='$id_permintaan'");
       if ($query_terima==TRUE) {
         echo "<script>
                       Lobibox.notify('default', {

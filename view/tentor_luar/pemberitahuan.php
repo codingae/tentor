@@ -5,7 +5,7 @@
 <?php 
 if ($_GET['kode']) {
 ?>
-<script src="http://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyCL76rVshr5mzm9bOgZEtBVtIHhAsd1R6A&mode=driving"></script>
+<!-- <script src="http://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyCL76rVshr5mzm9bOgZEtBVtIHhAsd1R6A&mode=driving"></script> -->
 <script type="text/javascript" src="assets/js/jquery.js"></script>
 <?php 
 $get_id      = base64_decode($_GET['kode']);
@@ -13,20 +13,26 @@ $id_tentor   = base64_decode($_SESSION['id_user']);
 $query_siswa = mysqli_query($koneksi,"select 
                             permintaan_tentor.id_permintaan,
                             permintaan_tentor.id_detail_permintaan_tentor,
+                            permintaan_tentor.mulai_les,
+                            permintaan_tentor.selesai_les,
                             user_detail.nama_lengkap,
                             user_detail.longtitude,
                             user_detail.lattitude,
                             user_detail.alamat,
+                            user_detail.no_telp,
                             keahlian.jenjang,
                             keahlian.mapel,
+                            biaya.kelas,
                             permintaan_tentor.durasi,
                             permintaan_tentor.status
                             from permintaan_tentor INNER JOIN user_detail 
                                  ON permintaan_tentor.id_user_pencari=user_detail.id_user
                                  INNER JOIN keahlian
                                  ON permintaan_tentor.id_keahlian=keahlian.id_keahlian
+                                 INNER JOIN biaya
+                                 ON permintaan_tentor.id_biaya=biaya.id
                              where permintaan_tentor.id_user_tentor='$id_tentor' 
-                                   && permintaan_tentor.status='proses' && permintaan_tentor.id_permintaan='$get_id'");
+                                   && (permintaan_tentor.status='proses' || permintaan_tentor.status='upload_valid') && permintaan_tentor.id_permintaan='$get_id'");
 $row_siswa     = mysqli_fetch_array($query_siswa);
 $lat2          = $row_siswa['lattitude'];
 $long2         = $row_siswa['longtitude'];
@@ -112,10 +118,7 @@ $(document).ready(function() {
                 <table class="table table-bordered">
                     <tr style="background: #1E88E5">
                         <td><b>#!</b></td>
-                        <td><b>Nama Lengkap</b></td>
-                        <td><b>Jenjang</b></td>
-                        <td><b>Mapel</b></td>
-                        <td><b>Durasi</b></td>
+                        <td width="60%"><b>Pemberitahuan</b></td>
                         <!-- <td><b>Status</b></td> -->
                         <td><b>Aksi</b></td>
                     </tr>
@@ -123,54 +126,69 @@ $(document).ready(function() {
                         $no = 1;
                         $query_pemberitahuan = mysqli_query($koneksi,"select 
                             permintaan_tentor.id_permintaan,
+                            permintaan_tentor.mulai_les,
+                            permintaan_tentor.selesai_les,
                             user_detail.nama_lengkap,
                             user_detail.longtitude,
                             user_detail.lattitude,
                             user_detail.alamat,
+                            user_detail.no_telp,
                             keahlian.jenjang,
                             keahlian.mapel,
+                            biaya.kelas,
                             permintaan_tentor.durasi,
                             permintaan_tentor.status
                             from permintaan_tentor INNER JOIN user_detail 
                                  ON permintaan_tentor.id_user_pencari=user_detail.id_user
                                  INNER JOIN keahlian
                                  ON permintaan_tentor.id_keahlian=keahlian.id_keahlian
+                                 INNER JOIN biaya
+                                 ON permintaan_tentor.id_biaya=biaya.id
                              where permintaan_tentor.id_user_tentor='$id_tentor' 
-                                   && permintaan_tentor.status='proses'");
+                                   && (permintaan_tentor.status='proses' || permintaan_tentor.status='upload_valid')");
                         // $query_pemberitahuan = mysqli_query($koneksi,"select * from permintaan_tentor where id_user_tentor='$id_tentor' && status='proses'");
                         if (mysqli_num_rows($query_pemberitahuan)>0) {
                         while ($row_pemberitahuan = mysqli_fetch_array($query_pemberitahuan)) {
                     ?>
                     <tr>
                         <td><?php echo $no++; ?></td>
-                        <td><?php echo $row_pemberitahuan['nama_lengkap']; ?></td>
-                        <td><?php echo strtoupper($row_pemberitahuan['jenjang']); ?></td>
-                        <td><?php echo $row_pemberitahuan['mapel']; ?></td>
-                        <td><?php echo $row_pemberitahuan['durasi']; ?> Bulan</td>
-                        <!-- <td><?php echo $row_pemberitahuan['status']; ?></td> -->
-                        <td>
-                            <button class="btn btn-secondary" onclick="document.getElementById('modalaksi<?php echo $row_pemberitahuan['id_permintaan']; ?>').style.display='block'"><span class="fa fa-tasks"></span>Aksi </button>
-                            <div class="w3-modal" id="modalaksi<?php echo $row_pemberitahuan['id_permintaan']; ?>">
-                                <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="max-width:600px">
-                                    <center><h2 class="w3-center"><br>Validasi Permintaan <?php echo ucwords($row_pemberitahuan['nama_lengkap']); ?></h2></center>
-                                    <span onclick="document.getElementById('modalaksi<?php echo $row_pemberitahuan['id_permintaan']; ?>').style.display='none'" class="w3-button w3-xlarge w3-hover-red w3-display-topright" title="Close Modal">&times;</span>
-                                    <!-- <div class="w3-container w3-border-top w3-padding-16 w3-light-grey"> -->
-                                        <div class="w3-container w3-border-top w3-padding-16 w3-light-grey">
-                                            <form action="" method="post">
-                                                <p style="text-align: center; margin:0 auto;"> 
-                                                        <input type="hidden" name="id_permintaan" value="<?php echo $row_pemberitahuan['id_permintaan']; ?>">
-                                                        <button type="submit"  name="terima_siswa" class="btn btn-secondary">
-                                                        Terima</button>
-                                                        <button type="submit"  name="tolak_siswa" class="btn">
-                                                        Tolak</button>
-                                                </p>
-                                            </form>
+                        <?php 
+                            if ($row_pemberitahuan['status']=="proses") {
+                            ?>
+                                <td width="60%">Anda Mendapat Permintaan Mengajar Dari <b><?php echo $row_pemberitahuan['nama_lengkap']; ?></b></td>
+                                <td>
+                                    <button class="btn btn-secondary" onclick="document.getElementById('modalaksi<?php echo $row_pemberitahuan['id_permintaan']; ?>').style.display='block'"><span class="fa fa-tasks"></span>Aksi </button>
+                                    <div class="w3-modal" id="modalaksi<?php echo $row_pemberitahuan['id_permintaan']; ?>">
+                                        <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="max-width:600px">
+                                            <center><h2 class="w3-center"><br>Validasi Permintaan <?php echo ucwords($row_pemberitahuan['nama_lengkap']); ?></h2></center>
+                                            <span onclick="document.getElementById('modalaksi<?php echo $row_pemberitahuan['id_permintaan']; ?>').style.display='none'" class="w3-button w3-xlarge w3-hover-red w3-display-topright" title="Close Modal">&times;</span>
+                                            <!-- <div class="w3-container w3-border-top w3-padding-16 w3-light-grey"> -->
+                                                <div class="w3-container w3-border-top w3-padding-16 w3-light-grey">
+                                                    <form action="" method="post">
+                                                        <p style="text-align: center; margin:0 auto;"> 
+                                                                <input type="hidden" name="id_permintaan" value="<?php echo $row_pemberitahuan['id_permintaan']; ?>">
+                                                                <button type="submit"  name="terima_siswa" class="btn btn-secondary">
+                                                                Terima</button>
+                                                                <button type="submit"  name="tolak_siswa" class="btn">
+                                                                Tolak</button>
+                                                        </p>
+                                                    </form>
+                                                </div>
+                                            <!-- </div> -->
                                         </div>
-                                    <!-- </div> -->
-                                </div>
-                            </div>
-                            <a href="pemberitahuan&kode&<?= base64_encode($row_pemberitahuan['id_permintaan']) ?>" class="btn"><span class="fa fa-map-marker"></span>Cek Maps </a>
-                        </td>
+                                    </div>
+                                    <a href="pemberitahuan&kode&<?= base64_encode($row_pemberitahuan['id_permintaan']) ?>" class="btn"><span class="fa fa-map-marker"></span>Cek Detail </a>
+                                </td>
+                            <?php
+                            }elseif ($row_pemberitahuan['status']=="upload_valid") {                  
+                            ?>
+                                <td width="60%"><b><?php echo $row_pemberitahuan['nama_lengkap']; ?></b> Sudah Melakukan Pembayaran, Silakan Anda Mulai Mengajar Pada <?php echo date_format(date_create($row_pemberitahuan['mulai_les']),'d-m-Y'); ?> - <?php echo date_format(date_create($row_pemberitahuan['selesai_les']),'d-m-Y'); ?></td>
+                                <td>
+                                    <a href="pemberitahuan&kode&<?= base64_encode($row_pemberitahuan['id_permintaan']) ?>" class="btn"><span class="fa fa-map-marker"></span>Cek Detail </a>
+                                </td>
+                            <?php
+                            }
+                        ?>
                     </tr>
                     <?php 
                         } 
@@ -193,15 +211,19 @@ $(document).ready(function() {
                             </div>
                             <div class="col-sm-12 col-md-6">
                                 <label for="">Jenjang</label>
-                                <input type="text" value="<?php echo strtoupper($row_siswa['jenjang']); ?>" class="form-control" readonly>
+                                <input type="text" value="<?php echo strtoupper($row_siswa['jenjang']); ?>; Kelas: <?php echo strtoupper($row_siswa['kelas']); ?>" class="form-control" readonly>
                             </div>
                             <br><br>
                             <br><br>
-                            <div class="col-sm-12 col-md-6">
+                            <div class="col-sm-12 col-md-4">
                                 <label for="">Siswa</label>
                                 <input type="text" value="<?php echo ucwords($row_siswa['mapel']); ?>" class="form-control" readonly>
                             </div>
-                            <div class="col-sm-12 col-md-6">
+                            <div class="col-sm-12 col-md-4">
+                                <label for="">No Telp</label>
+                                <input type="text" value="<?php echo ucwords($row_siswa['no_telp']); ?>" class="form-control" readonly>
+                            </div>
+                            <div class="col-sm-12 col-md-4">
                                 <label for="">Durasi Les</label>
                                 <input type="text" value="<?php echo ucwords($row_siswa['durasi']); ?> Bulan" class="form-control" readonly>
                             </div>
@@ -209,7 +231,17 @@ $(document).ready(function() {
                             <br><br>
                             <div class="col-sm-12 col-md-12">
                                 <label for="">Alamat</label>
-                                <input type="text" value="<?php echo ucwords($row_siswa['alamat']); ?> Bulan" class="form-control" readonly>
+                                <input type="text" value="<?php echo ucwords($row_siswa['alamat']); ?> " class="form-control" readonly>
+                            </div>
+                            <br><br>
+                            <br><br>
+                            <div class="col-sm-12 col-md-6">
+                                <label for="">Mulai Les</label>
+                                <input type="text" value="<?php echo date_format(date_create($row_siswa['mulai_les']),'d-m-Y'); ?>" class="form-control" readonly>
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <label for="">Selesai Les</label>
+                                <input type="text" value="<?php echo date_format(date_create($row_siswa['selesai_les']),'d-m-Y'); ?>" class="form-control" readonly>
                             </div>
                             <br><br>
                             <br><br>
@@ -240,7 +272,7 @@ $(document).ready(function() {
                             <br><br>
                             <br><br>
                             <div class="col-sm-12 col-md-12">
-                                <div id="map-canvas" style="width:100%;height:400px;"></div>
+                                <!-- <div id="map-canvas" style="width:100%;height:400px;"></div> -->
                             </div>
 
                             <br><br>
