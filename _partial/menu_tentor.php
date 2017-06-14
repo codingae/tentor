@@ -84,7 +84,7 @@ $row_pemberitahuan = mysqli_fetch_array($query_pemberitahuan);
                           <?php
                           }else{
                           ?>
-                            <li><a href="pemberitahuan?>">Pembertahuan</a></li>
+                            <li><a href="pemberitahuan">Pembertahuan</a></li>
                           <?php
                           }
                         ?>

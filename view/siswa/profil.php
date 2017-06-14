@@ -72,6 +72,42 @@ $(document).ready(function() {
     left: -20px;
 }
 </style>
+<style>
+    /****** Rating Starts *****/
+    .rating { 
+        border: none;
+        /*float: left;*/
+    }
+
+    .rating > input { display: none; } 
+    .rating > label:before { 
+        margin: 5px;
+        font-size: 1.25em;
+        font-family: FontAwesome;
+        display: inline-block;
+        content: "\f005";
+    }
+
+    .rating > .half:before { 
+        content: "\f089";
+        position: absolute;
+    }
+
+    .rating > label { 
+        color: #ddd; 
+        float: right; 
+    }
+
+    .rating > input:checked ~ label, 
+    .rating:not(:checked) > label:hover,  
+    .rating:not(:checked) > label:hover ~ label { color: #FFD700;  }
+
+    .rating > input:checked + label:hover, 
+    .rating > input:checked ~ label:hover,
+    .rating > label:hover ~ input:checked ~ label, 
+    .rating > input:checked ~ label:hover ~ label { color: #FFED85;  }     
+
+</style>
 <div class="container">
     <div class="row">
         <!-- sidebar -->
@@ -516,41 +552,103 @@ $(document).ready(function() {
                         }
                     ?>
                     <br>
-                    <h2 class="page-header ">Komentar</h2>
-                    <div class="row box">
-                        <div class="col-sm-4">
-                            <span class="small-title">Notice</span>
+                    <?php 
+                    $queryKomentar = mysqli_query($koneksi,"select 
+                        user.uname,
+                        user_detail.foto,
+                        nilai_tentor.nilai,
+                        nilai_tentor.id_permintaan_tentor,
+                        nilai_tentor.catatan
+                        from permintaan_tentor INNER JOIN user 
+                             ON permintaan_tentor.id_user_pencari=user.id_user
+                             INNER JOIN user_detail 
+                             ON permintaan_tentor.id_user_pencari=user_detail.id_user
+                             INNER JOIN nilai_tentor 
+                             ON permintaan_tentor.id_permintaan=nilai_tentor.id_permintaan_tentor
+                         where nilai_tentor.id_user_tentor='$id_user' order by nilai_tentor.nilai ASC");
+                    ?>
+                    <h2 class="page-header ">Komentar </h2>
+                        <div class="row box">
+                        <?php if (mysqli_num_rows($queryKomentar)>0) {
+                            ?>
+                            <div id="comments" class="comments-area">
+                                <?php 
+                                    while ($rowKomentar = mysqli_fetch_array($queryKomentar)) {
+                                ?>
+                                <ol class="comment-list">
+                                    <li class="comment byuser comment-author-admin even thread-even depth-1 comments" id="comment-31">
+                                        <div class="comment clearfix">
+                                            <div class="comment-author">
+                                                <img alt="Foto" src="<?= $rowKomentar['foto'] ?>" class="avatar avatar-70 photo" height="70" width="70">
+                                            </div><!-- /.comment-image -->
 
-                            <p class="text">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ut elementum risus, ut auctor nisl. Donec a euismod mi. Ut accumsan, enim nec luctus ullamcorper.
-                            </p>
-                        </div>
-                        <div class="col-sm-8">
-                            <div class="property-valuation">
-                                <div class="row">
-                                    <div class="col-sm-8">
-                                        <ul class="property-valuation-values">
-                                            <li><span style="width: 80%;"></span></li>
-                                            <li><span style="width: 43%;"></span></li>
-                                            <li><span style="width: 97%;"></span></li>
-                                            <li><span style="width: 67%;"></span></li>
-                                            <li><span style="width: 90%;"></span></li>
-                                        </ul><!-- /.property-valuation-values -->
-                                    </div>
+                                            <div class="comment-content">
+                                                <div class="comment-meta">
+                                                    <strong class="comment-author"><?= ucfirst($rowKomentar['uname']) ?></strong>
+                                                    <span class="separator">|</span>
+                                                    <span class="comment-date rating">
+                                                        <?php 
+                                                            $nilai = $rowKomentar['nilai'];
+                                                            ?>
+                                                                <!-- <fieldset  class="x"> -->
+                                                                <input type="radio" name="rating<?= $rowKomentar['id_permintaan_tentor'] ?>" value="5" <?php if ($nilai=="5") {
+                                                                    echo "checked";
+                                                                }else{
+                                                                    echo "disabled";
+                                                                    } ?> />
+                                                                <label class = "full" for="star5" title="Sangat Baik"></label>
+                                                                <input type="radio" name="rating<?= $rowKomentar['id_permintaan_tentor'] ?>" value="4" <?php if ($nilai=="4") {
+                                                                    echo "checked";
+                                                                }else{
+                                                                    echo "disabled";
+                                                                    } ?> />
+                                                                <label class = "full" for="star4" title="Baik"></label>
+                                                                <input type="radio" name="rating<?= $rowKomentar['id_permintaan_tentor'] ?>" value="3" <?php if ($nilai=="3") {
+                                                                    echo "checked";
+                                                                }else{
+                                                                    echo "disabled";
+                                                                    } ?> />
+                                                                <label class = "full" for="star3" title="Cukup"></label>
+                                                                <input type="radio" name="rating<?= $rowKomentar['id_permintaan_tentor'] ?>" value="2" <?php if ($nilai=="2") {
+                                                                    echo "checked";
+                                                                }else{
+                                                                    echo "disabled";
+                                                                    } ?> />
+                                                                <label class = "full" for="star2" title="Kurang"></label>
+                                                                <input type="radio" name="rating<?= $rowKomentar['id_permintaan_tentor'] ?>" value="1" <?php if ($nilai=="1") {
+                                                                    echo "checked";
+                                                                }else{
+                                                                    echo "disabled";
+                                                                    } ?> />
+                                                                <label class = "full" for="star1" title="Sangat Kurang"></label>
+                                                                <!-- </fieldset> -->
+                                                            <?php
+                                                        ?>
+                                                    </span>
+                                                </div><!-- /.comment-meta -->
 
-                                    <div class="col-sm-4">
-                                        <ul class="property-valuation-keys">
-                                            <li>Crime</li>
-                                            <li>Traffic</li>
-                                            <li>Pollution</li>
-                                            <li>Education</li>
-                                            <li>Health</li>
-                                        </ul><!-- /.property-valuation-keys -->
+                                                <div class="comment-body">
+                                                    <p><?= $rowKomentar['catatan'] ?></p>
+                                                </div><!-- /.comment-body -->
+                                            </div><!-- /.comment-content -->
+                                        </div><!-- /.comment -->
+                                    </li>
+                                </ol><!-- /.comment-list -->
+                                <?php } ?>
+                            </div>
+                            <?php
+                            }else{
+                                ?>
+                                    <div class="alert alert-danger alert-dismissible" role="alert">
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
+                                        Belum Ada Komentar
                                     </div>
-                                </div><!-- /.row -->
-                            </div><!-- /.property-valuation -->
-                        </div>
-                    </div><!-- /.row -->
+                                <?php
+                            } 
+                        ?>
+                            
+                        </div><!-- /.row -->
+                       
                     <!-- end komentar -->
                 <?php
                 }

@@ -19,12 +19,17 @@
         <div class="content col-sm-8 col-md-9">
             <form action="" method="post" enctype="multipart/form-data" id="validasi">
             <span class="page-header">
-                <div class="col-sm-9 col-md-9">
+                <div class="col-sm-9 col-md-6">
                     <div class="form-group">
-                      <h1>Daftar Sebagai =></h1>
+                      <h1>Daftar</h1>
                     </div>
                 </div>
-                <div class="col-sm-3 col-md-3">
+                <div class="col-sm-3 col-md-2">
+                    <div class="form-group">
+                      <h1>Sebagai </h1>
+                    </div>
+                </div>
+                <div class="col-sm-3 col-md-4">
                     <div class="form-group">
                         <select name="level">
                             <option value="">Pilih</option>

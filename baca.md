@@ -17,6 +17,7 @@
 <!-- fitur -->
 Ajax
 Datatable serverside
+Datatable clientside
 
 <!-- bug -->
 admin login harus klik 2x

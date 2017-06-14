@@ -61,13 +61,13 @@
         <!-- end sidebar -->
         <!-- konten -->
         <div class="content col-sm-8 col-md-9">
-            <h1 class="page-header">Raport Anda</h1>
+            <h1 class="page-header">List Raport Siswa</h1>
             <div class="box">
                 <table class="table table-bordered">
                     <tr style="background: #1E88E5">
                         <td style="width: 5%"><b>#!</b></td>
                         <td><b>Mata Pelajaran</b></td>
-                        <td><b>Tentor</b></td>
+                        <td><b>Siswa</b></td>
                         <td><b>Jadwal</b></td>
                         <td><b>Aksi</b></td>
                     </tr>
@@ -76,13 +76,11 @@
                         $id_user_pencari = base64_decode($_SESSION['id_user']);
                         $query_pemberitahuan = mysqli_query($koneksi,"select 
                             keahlian.mapel,
-                            keahlian.jenjang,
                             user_detail.nama_lengkap,
                             permintaan_tentor.mulai_les,
                             permintaan_tentor.selesai_les,
                             permintaan_tentor.status,
                             permintaan_tentor.id_permintaan,
-                            permintaan_tentor.id_biaya,
                             permintaan_tentor.id_user_pencari,
                             permintaan_tentor.id_user_tentor,
                             permintaan_tentor.id_detail_permintaan_tentor
@@ -112,103 +110,25 @@
                             	$cek_eval = mysqli_query($koneksi,"select * from evaluasi_siswa where id_permintaan='$id_p'");
                             	$cek_num  = mysqli_num_rows($cek_eval);
                             	if ($cek_num >= 3) {
-                                	$cekNilaiTentor = mysqli_query($koneksi,"select * from nilai_tentor where id_permintaan_tentor='$id_p'");
-                                	$cek_num_nilai  = mysqli_num_rows($cekNilaiTentor);
-                                 ?>
-                                    <div class="w3-modal" id="modalaksi<?php echo $row_pemberitahuan['id_permintaan']; ?>">
-                                        <div class="w3-modal-content w3-card-4 w3-animate-zoom" <?php if ($cek_num_nilai>0) {
-                                        ?> style="max-width:900px" <?php
-                                        }else{
-                                        ?> style="max-width:600px" <?php
-                                        } ?> >
-                                        <center><h2 class="w3-center"><br>Raport Anda</h2></center>
-                                        <span onclick="document.getElementById('modalaksi<?php echo $row_pemberitahuan['id_permintaan']; ?>').style.display='none'" class="w3-button w3-xlarge w3-hover-red w3-display-topright" title="Keluar">&times;</span>
-                                        <!-- <div class="w3-container w3-border-top w3-padding-16 w3-light-grey"> -->
-                                        <div class="w3-container w3-border-top w3-padding-16 w3-light-grey">
-                                            <?php 
+                            	 ?>
+	                                <div class="w3-modal" id="modalaksi<?php echo $row_pemberitahuan['id_permintaan']; ?>">
+	                                    <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="max-width:600px">
+	                                    <center><h2 class="w3-center"><br>Raport Anda</h2></center>
+	                                    <span onclick="document.getElementById('modalaksi<?php echo $row_pemberitahuan['id_permintaan']; ?>').style.display='none'" class="w3-button w3-xlarge w3-hover-red w3-display-topright" title="Keluar">&times;</span>
+	                                    <!-- <div class="w3-container w3-border-top w3-padding-16 w3-light-grey"> -->
+	                                    <div class="w3-container w3-border-top w3-padding-16 w3-light-grey">
+	                                        <?php 
+	                                        	$cekNilaiTentor = mysqli_query($koneksi,"select * from nilai_tentor where id_permintaan_tentor='$id_p'");
+	                                        	$cek_num_nilai  = mysqli_num_rows($cekNilaiTentor);
 	                                        	if ($cek_num_nilai>0) {
-	                                        	  ?>
-                                                    <center><h4>Laporan Akhir Les</h4></center>
-                                                    <center><h4><b>"BIMBEL FLC(Fun Learning Course)"</b></h4></center>
-                                                    <center style="margin-top: 5px"><i>Alamat : Keplaksari, Peterongan, Keplaksari, Peterongan, Kabupaten Jombang, Jawa Timur 61481</i></center>
-                                                    <hr style="background-color: black;height: 3px;margin-top: 9px">
-                                                    <table>
-                                                        <tr>
-                                                            <td>Nama:</td>
-                                                            <?php 
-                                                                $query_nama = mysqli_query($koneksi,"select nama_lengkap from user_detail where id_user='$id_user_pencari'");
-                                                                $row_nama   = mysqli_fetch_array($query_nama);
-                                                            ?>
-                                                            <td><b>: <?= ucwords($row_nama['nama_lengkap']) ?></b></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Jenjang/Kelas </td>
-                                                            <?php 
-                                                                $id_kelas    = $row_pemberitahuan['id_biaya'];
-                                                                $query_kelas = mysqli_query($koneksi,"select kelas from biaya where id='$id_kelas'");
-                                                                $row_kelas   = mysqli_fetch_array($query_kelas);
-                                                            ?>
-                                                            <td><b>: <?= strtoupper($row_pemberitahuan['jenjang'])." / Kelas ". $row_kelas['kelas'] ?></b></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Mata Pelajaran </td>
-                                                            <?php 
-                                                                $query_nama = mysqli_query($koneksi,"select nama_lengkap from user_detail where id_user='$id_user_pencari'");
-                                                                $row_nama   = mysqli_fetch_array($query_nama);
-                                                            ?>
-                                                            <td><b>: <?= ucwords($row_pemberitahuan['mapel']) ?></b></td>
-                                                        </tr>
-                                                    </table>
-                                                    <br>
-                                                    <table class="table table-bordered">
-                                                        <tr style="background: #1E88E5">
-                                                            <td style="width: 5%"><b>#!</b></td>
-                                                            <td><b>Jenis Nilai</b></td>
-                                                            <td><b>Nilai</b></td>
-                                                            <td><b>Catatan</b></td>
-                                                        </tr>
-                                                        <?php 
-                                                            $no_nilai=1;
-                                                            $query_nilai = mysqli_query($koneksi,"select * from evaluasi_siswa where id_permintaan='$id_p'");
-                                                            while ($row_nilai   = mysqli_fetch_array($query_nilai)) {
-                                                        ?>
-                                                        <tr>
-                                                            <td><b><?= $no_nilai++ ?></b></td>
-                                                            <td><?= $row_nilai['jenis_nilai'] ?></td>
-                                                            <td><?= $row_nilai['nilai'] ?></td>
-                                                            <td><?= $row_nilai['catatan'] ?></td>
-                                                        </tr>
-                                                        <?php } ?>
-                                                    </table>
-                                                    <center><h4><b>Pesan Manajemen Bimbel FLC</b></h4></center>
-                                                    <blockquote style="font-size: 13px"><?= ucwords("pendidikan bukanlah milik mereka yang kaya, buka pula kekuatan mereka yang cerdas, pendidikan adalah milik mereka yang mau belajar, mencari bkebenaran dan membawa perubahan, teruslah belajar meski hanya sekedar untuk mengisi setetes air dalam gelas hidup kita") ?></blockquote>
-                                                    <div class="col-sm-12 col-md-6">
-                                                        <center><b>Orang Tua/Wali Siswa</b></center> <br><br><br><br>
-                                                        <hr style="margin-top:5px;border-bottom: 2px solid #8c8b8b;border-top: 2px dotted #8c8b8b;width: 60%">
-                                                    </div>
-                                                    <div class="col-sm-12 col-md-6">
-                                                        <center><b>CEO Bimbel FLC</b><br><br><br><br>
-                                                        <b><i>ARI ISMAWANTO</i></b>
-                                                        <hr style="margin-top:5px ;border-bottom: 2px solid #8c8b8b;border-top: 2px dotted #8c8b8b;width: 60%">
-                                                        </center>
-                                                    </div>
-                                                    <div class="col-sm-12 col-md-12">
-                                                        <br><br><br>
-                                                    </div>
-
-                                                    <center>
-                                                        <button type="submit" name="#!" class="btn btn-secondary">
-                                                        Cetak Raport</button>
-                                                    </center>
-                                                  <?php
+	                                        		echo "Raport Tampil";
 	                                        	}else{
 	                                        		echo "<p><center><h5><b>Silakan Berikan Testimoni Kepada Tentor <i style='color:#1565C0'>".$row_pemberitahuan['nama_lengkap']." </i>Terlebih Dahulu</b></h5></center><p>";
 	                                        		?>
 													<form action="" id="formTestimoni" method="post">
 													<input type="hidden" name="id_permintaan" value="<?= $row_pemberitahuan['id_permintaan'] ?>">
 													<input type="hidden" name="id_user_pencari" value="<?= $row_pemberitahuan['id_user_pencari'] ?>">
-                                                    <input type="hidden" name="id_user_tentor" value="<?= $row_pemberitahuan['id_user_tentor'] ?>">
-													<input type="hidden" name="id_detail_permintaan_tentor" value="<?= $row_pemberitahuan['id_detail_permintaan_tentor'] ?>">
+													<input type="hidden" name="id_user_tentor" value="<?= $row_pemberitahuan['id_user_tentor'] ?>">
 	                                        		<div class="col-sm-12 col-md-12">
 	                                        			<br>
 														<fieldset id='demo1' class="rating" style="float: left">
@@ -330,32 +250,9 @@
 		$catatan         = $_POST['catatan'];
 		$id_permintaan   = $_POST['id_permintaan'];
 		$id_user_pencari = $_POST['id_user_pencari'];
-        $id_user_tentor  = $_POST['id_user_tentor'];
-		$id_detail_permintaan_tentor  = $_POST['id_detail_permintaan_tentor'];
-        $queryDetailPermintaan = mysqli_query($koneksi,"select * from detail_permintaan_tentor where id_permintaan='$id_detail_permintaan_tentor'");        
-        while ($row=mysqli_fetch_array($queryDetailPermintaan)) {
-            $hari = $row['hari'];
-            $jam  = $row['jam'];
-            if ($hari=="sabtu") {
-                $queryNilaiTentor = mysqli_query($koneksi,"update jadwal_tentor set sabtu='kosong' where id_user_tentor='$id_user_tentor' && id_jam='$jam'");
-            }elseif ($hari=="minggu") {
-                $queryNilaiTentor = mysqli_query($koneksi,"update jadwal_tentor set minggu='kosong' where id_user_tentor='$id_user_tentor' && id_jam='$jam'");
-            }elseif ($hari=="senin") {
-                $queryNilaiTentor = mysqli_query($koneksi,"update jadwal_tentor set senin='kosong' where id_user_tentor='$id_user_tentor' && id_jam='$jam'");
-            }elseif ($hari=="selasa") {
-                $queryNilaiTentor = mysqli_query($koneksi,"update jadwal_tentor set selasa='kosong' where id_user_tentor='$id_user_tentor' && id_jam='$jam'");
-            }elseif ($hari=="rabu") {
-                $queryNilaiTentor = mysqli_query($koneksi,"update jadwal_tentor set rabu='kosong' where id_user_tentor='$id_user_tentor' && id_jam='$jam'");
-            }elseif ($hari=="rabu") {
-                $queryNilaiTentor = mysqli_query($koneksi,"update jadwal_tentor set rabu='kosong' where id_user_tentor='$id_user_tentor' && id_jam='$jam'");
-            }elseif ($hari=="kamis") {
-                $queryNilaiTentor = mysqli_query($koneksi,"update jadwal_tentor set kamis='kosong' where id_user_tentor='$id_user_tentor' && id_jam='$jam'");
-            }elseif ($hari=="jumat") {
-                $queryNilaiTentor = mysqli_query($koneksi,"update jadwal_tentor set jumat='kosong' where id_user_tentor='$id_user_tentor' && id_jam='$jam'");
-            }
-        }
-        $queryNilaiTentor = mysqli_query($koneksi,"insert into nilai_tentor values ('$id_permintaan','$id_user_pencari','$id_user_tentor','$rating','$catatan')");
-        $queryNilaiTentor = mysqli_query($koneksi,"update permintaan_tentor set status='les_selesai' where id_permintaan='$id_permintaan'");
+		$id_user_tentor  = $_POST['id_user_tentor'];
+		$queryNilaiTentor = mysqli_query($koneksi,"insert into nilai_tentor values ('$id_permintaan','$id_user_pencari','$id_user_tentor','$rating','$catatan')");
+		$queryNilaiTentor = mysqli_query($koneksi,"update permintaan_tentor set status='les_selesai' where id_permintaan='$id_permintaan'");
 		if ($queryNilaiTentor==TRUE) {
 			echo "<script>
                         Lobibox.notify('default', {

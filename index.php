@@ -110,6 +110,7 @@ if($tentor == "admin" || $level_sess=="admin"){
             case 'riwayat': include "view/tentor_luar/riwayat.php"; break;
             case 'jadwal': include "view/tentor_luar/jadwal.php"; break;
             case 'pemberitahuan': include "view/tentor_luar/pemberitahuan.php"; break;
+            case 'raport': include "view/tentor_luar/raport.php"; break;
             case 'keluar': include "view/keluar.php"; break;
             case '404': include "view/404.php"; break;
             case 'redirect': include "view/redirect.php"; break;
@@ -124,6 +125,7 @@ if($tentor == "admin" || $level_sess=="admin"){
             case 'editpp': include "view/tentor_luar/editpp.php"; break;
             case 'jadwal': include "view/tentor_luar/jadwal.php"; break;
             case 'pemberitahuan': include "view/tentor_luar/pemberitahuan.php"; break;
+            case 'raport': include "view/tentor_luar/raport.php"; break;
             case 'keluar': include "view/keluar.php"; break;
             case '404': include "view/404.php"; break;
             case 'redirect': include "view/redirect.php"; break;

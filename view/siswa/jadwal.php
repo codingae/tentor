@@ -115,7 +115,7 @@
                     }
                     else{
                     ?>
-                    <tr><td colspan="7">Tidak Ada Pemberitahuan</td></tr>
+                    <tr><td colspan="7">Tidak Ada Jadwal</td></tr>
                     <?php
                     } 
                     ?>
